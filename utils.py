@@ -142,7 +142,7 @@ def load_chars(args, examples):
     """Iterate and index all the chars in examples (documents + questions)."""
     def _insert(iterable):
         for cs in iterable:
-            for c in cs: 
+            for c in cs:
                 c = Dictionary.normalize(c)
                 if valid_chars and c not in valid_chars:
                     continue

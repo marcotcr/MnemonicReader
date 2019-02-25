@@ -75,12 +75,12 @@ def add_train_args(parser):
     files.add_argument('--data-dir', type=str, default=DATA_DIR,
                        help='Directory of training/validation data')
     files.add_argument('--train-file', type=str,
-                       default='SQuAD-v1.1-train-processed-spacy.txt',
+                       default='SQuAD-train-v1.1-processed-spacy.txt',
                        help='Preprocessed train file')
     files.add_argument('--dev-file', type=str,
-                       default='SQuAD-v1.1-dev-processed-spacy.txt',
+                       default='SQuAD-dev-v1.1-processed-spacy.txt',
                        help='Preprocessed dev file')
-    files.add_argument('--dev-json', type=str, default='SQuAD-v1.1-dev.json',
+    files.add_argument('--dev-json', type=str, default='SQuAD-dev-v1.1.json',
                        help=('Unprocessed dev file to run validation '
                              'while training on'))
     files.add_argument('--embed-dir', type=str, default=EMBED_DIR,
@@ -204,7 +204,7 @@ def init_from_scratch(args, train_exs, dev_exs):
     logger.info('-' * 100)
     logger.info('Build word dictionary')
     word_dict = utils.build_word_dict(args, train_exs + dev_exs)
-    logger.info('Num words = %d' % len(word_dict))    
+    logger.info('Num words = %d' % len(word_dict))
 
     # Build a char dictionary from the data questions + documents (train/dev splits)
     logger.info('-' * 100)
@@ -534,13 +534,13 @@ def main(args):
             model.save(args.model_file)
             stats['best_valid'] = result[args.valid_metric]
 
-
 if __name__ == '__main__':
     # Parse cmdline args and setup environment
     parser = argparse.ArgumentParser(
         'WRMCQA Document Reader',
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
+    print('AE')
     add_train_args(parser)
     config.add_model_args(parser)
     args = parser.parse_args()
